@@ -17,6 +17,9 @@ dependencies = [
     "chromadb",
     "sentence-transformers",
     "numpy<2.0.0",
+    "langchain",
+    "langchain-google-genai",
+    "google-generativeai",
 ]
 
 [project.optional-dependencies]

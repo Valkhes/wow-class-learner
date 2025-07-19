@@ -5,9 +5,12 @@ import logging
 from typing import Optional
 
 from router.guide_router import router as guide_router
+from router.llm_router import llm_router
 from router.guide_handler import GuideHandler
+from router.llm_handler import LLMHandler
 from business.scraper_service import ScraperService
 from business.guide_service import GuideService
+from business.llm_service import LLMService
 from connector.embedding_connector import create_embedding_connector, EmbeddingConnector
 
 # Configure logging
@@ -25,7 +28,9 @@ class WowClassLearnerServer:
         self.embedding_connector: Optional[EmbeddingConnector] = None
         self.scraper_service: Optional[ScraperService] = None
         self.guide_service: Optional[GuideService] = None
+        self.llm_service: Optional[LLMService] = None
         self.guide_handler: Optional[GuideHandler] = None
+        self.llm_handler: Optional[LLMHandler] = None
         
         self.is_setup = False
     
@@ -58,9 +63,16 @@ class WowClassLearnerServer:
                 logger.error("Failed to initialize GuideService")
                 return False
             
+            # Initialize LLMService with embedding database dependency
+            self.llm_service = LLMService(self.embedding_connector)
+            if not self.llm_service.initialize():
+                logger.error("Failed to initialize LLMService")
+                return False
+            
             # 3. Setup Handler Layer
             logger.info("Setting up handler layer...")
             self.guide_handler = GuideHandler(self.scraper_service, self.guide_service)
+            self.llm_handler = LLMHandler(self.llm_service)
             
             # 4. Create FastAPI application
             logger.info("Creating FastAPI application...")
@@ -98,13 +110,15 @@ class WowClassLearnerServer:
         
         # Include routers
         app.include_router(guide_router, prefix="/api/v1")
+        app.include_router(llm_router)  # LLM router already has /api/v1 prefix
         
         return app
     
     def _setup_dependencies(self):
         """Setup dependency injection for the application"""
-        # Make handler available to routers
+        # Make handlers available to routers
         self.app.state.guide_handler = self.guide_handler
+        self.app.state.llm_handler = self.llm_handler
     
     def run(self, reload: bool = False):
         """
@@ -143,9 +157,17 @@ class WowClassLearnerServer:
         """Get the guide service instance"""
         return self.guide_service if self.is_setup else None
     
+    def get_llm_service(self) -> Optional[LLMService]:
+        """Get the LLM service instance"""
+        return self.llm_service if self.is_setup else None
+    
     def get_guide_handler(self) -> Optional[GuideHandler]:
         """Get the guide handler instance"""
         return self.guide_handler if self.is_setup else None
+    
+    def get_llm_handler(self) -> Optional[LLMHandler]:
+        """Get the LLM handler instance"""
+        return self.llm_handler if self.is_setup else None
     
     def get_status(self) -> dict:
         """Get server status information"""
@@ -156,6 +178,7 @@ class WowClassLearnerServer:
         embedding_stats = self.embedding_connector.get_stats() if self.embedding_connector else {}
         scraper_ready = self.scraper_service.is_ready() if self.scraper_service else False
         guide_ready = self.guide_service.is_ready() if self.guide_service else False
+        llm_ready = self.llm_service.is_ready() if self.llm_service else False
         
         return {
             "status": "running",
@@ -167,10 +190,12 @@ class WowClassLearnerServer:
                 },
                 "business": {
                     "scraper_service": {"ready": scraper_ready},
-                    "guide_service": {"ready": guide_ready}
+                    "guide_service": {"ready": guide_ready},
+                    "llm_service": {"ready": llm_ready}
                 },
                 "handler": {
-                    "guide_handler": {"ready": self.guide_handler is not None}
+                    "guide_handler": {"ready": self.guide_handler is not None},
+                    "llm_handler": {"ready": self.llm_handler is not None}
                 }
             },
             "setup_completed": self.is_setup
