@@ -1,0 +1,238 @@
+{
+  "classes": [
+    {
+      "id": 1,
+      "name": "warrior",
+      "specializations": [
+        {
+          "id": 1,
+          "name": "arms"
+        },
+        {
+          "id": 2,
+          "name": "fury"
+        },
+        {
+          "id": 3,
+          "name": "protection"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "paladin",
+      "specializations": [
+        {
+          "id": 4,
+          "name": "holy"
+        },
+        {
+          "id": 5,
+          "name": "protection"
+        },
+        {
+          "id": 6,
+          "name": "retribution"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "hunter",
+      "specializations": [
+        {
+          "id": 7,
+          "name": "beast mastery"
+        },
+        {
+          "id": 8,
+          "name": "marksmanship"
+        },
+        {
+          "id": 9,
+          "name": "survival"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "rogue",
+      "specializations": [
+        {
+          "id": 10,
+          "name": "assassination"
+        },
+        {
+          "id": 11,
+          "name": "outlaw"
+        },
+        {
+          "id": 12,
+          "name": "subtlety"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "priest",
+      "specializations": [
+        {
+          "id": 13,
+          "name": "discipline"
+        },
+        {
+          "id": 14,
+          "name": "holy"
+        },
+        {
+          "id": 15,
+          "name": "shadow"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "death knight",
+      "specializations": [
+        {
+          "id": 16,
+          "name": "blood"
+        },
+        {
+          "id": 17,
+          "name": "frost"
+        },
+        {
+          "id": 18,
+          "name": "unholy"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "shaman",
+      "specializations": [
+        {
+          "id": 19,
+          "name": "elemental"
+        },
+        {
+          "id": 20,
+          "name": "enhancement"
+        },
+        {
+          "id": 21,
+          "name": "restoration"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "mage",
+      "specializations": [
+        {
+          "id": 22,
+          "name": "arcane"
+        },
+        {
+          "id": 23,
+          "name": "fire"
+        },
+        {
+          "id": 24,
+          "name": "frost"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "name": "warlock",
+      "specializations": [
+        {
+          "id": 25,
+          "name": "affliction"
+        },
+        {
+          "id": 26,
+          "name": "demonology"
+        },
+        {
+          "id": 27,
+          "name": "destruction"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "monk",
+      "specializations": [
+        {
+          "id": 28,
+          "name": "brewmaster"
+        },
+        {
+          "id": 29,
+          "name": "mistweaver"
+        },
+        {
+          "id": 30,
+          "name": "windwalker"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "name": "druid",
+      "specializations": [
+        {
+          "id": 31,
+          "name": "balance"
+        },
+        {
+          "id": 32,
+          "name": "feral"
+        },
+        {
+          "id": 33,
+          "name": "guardian"
+        },
+        {
+          "id": 34,
+          "name": "restoration"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "name": "demon hunter",
+      "specializations": [
+        {
+          "id": 35,
+          "name": "havoc"
+        },
+        {
+          "id": 36,
+          "name": "vengeance"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "name": "evoker",
+      "specializations": [
+        {
+          "id": 37,
+          "name": "devastation"
+        },
+        {
+          "id": 38,
+          "name": "preservation"
+        },
+        {
+          "id": 39,
+          "name": "augmentation"
+        }
+      ]
+    }
+  ]
+} 

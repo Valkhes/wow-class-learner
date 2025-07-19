@@ -1,0 +1,60 @@
+[project]
+name = "wow-class-learner"
+version = "1.0.0"
+description = "Full project to get agentic information about wow class guides"
+authors = [
+    {name = "WoW Class Learner Team"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "pydantic",
+    "requests",
+    "beautifulsoup4",
+    "lxml",
+    "chromadb",
+    "sentence-transformers",
+    "numpy<2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "isort",
+    "flake8",
+]
+
+[project.scripts]
+wow-class-learner = "main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["pkg", "entities", "business", "connector", "router"]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest",
+    "black",
+    "isort",
+    "flake8",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"] 
