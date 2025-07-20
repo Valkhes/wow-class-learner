@@ -4,7 +4,12 @@ Main entry point for WoW Class Learner Server
 """
 
 import logging
+import os
+from dotenv import load_dotenv
 from pkg.server import create_server
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)

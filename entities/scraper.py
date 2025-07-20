@@ -215,7 +215,10 @@ def load_classes_data() -> List[Dict]:
     try:
         classes_file = os.path.join("conf", "classes.json")
         with open(classes_file, 'r', encoding='utf-8') as f:
-            classes_data = json.load(f)
+            data = json.load(f)
+        
+        # Extract the classes list from the JSON structure
+        classes_data = data.get("classes", [])
         
         logger.info(f"Loaded {len(classes_data)} classes from {classes_file}")
         return classes_data

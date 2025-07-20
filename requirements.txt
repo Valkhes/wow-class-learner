@@ -5,4 +5,9 @@ requests==2.31.0
 beautifulsoup4==4.12.2
 lxml==4.9.3
 chromadb==0.4.22
-sentence-transformers==2.2.2 
+sentence-transformers==2.2.2
+litellm[proxy]
+redis
+prometheus-client
+python-dotenv
+apscheduler 
